@@ -1,4 +1,4 @@
-//あいうえお
+
 //ロードしたときに起動する機能その１
 document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("foodModal");
