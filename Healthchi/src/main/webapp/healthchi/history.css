@@ -1,0 +1,272 @@
+/* 画面全体のスクロール禁止 & 基本スタイル */
+html, body {
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Kosugi Maru', cursive, sans-serif;
+    color: #471906;
+    background-image: url('GRAPHICS/foodbg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* ホームボタン（画面右上に固定） */
+.home-button {
+    position: fixed;
+    top: 2vh;
+    right: 2vw;
+    width: 6vw;
+    max-width: 60px;
+    height: auto;
+    z-index: 10;
+}
+
+.home-button img {
+    width: 100%;
+    height: auto;
+    border: none;
+}
+
+.home-button img:hover {
+    transform: scale(1.1);
+}
+
+/* 月移動ボタン */
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    width: 80%;
+    margin: 4vh auto 2vh auto;
+    flex-wrap: wrap;
+}
+
+.category-buttons button {
+    background: none;
+    border: none;
+    padding: 1vh;
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-size: clamp(12px, 1.5vw, 16px);
+}
+
+.category-buttons img {
+    width: 20vw;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+}
+
+.category-buttons img:hover {
+    transform: scale(1.1);
+}
+
+/* タイトル */
+.calendar-title {
+    width: 100%;
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 1vh 0;
+    text-align: center;
+    background-color: #ffe0b2;
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: bold;
+    color: #471906;
+    border-bottom: 2px solid #e0a96d;
+}
+
+/* グラフキャンバス */
+#graphView canvas {
+    width: 80% !important;
+    max-width: 80%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    padding: 1vh;
+}
+
+/* 表の外枠 */
+.dish-table {
+    width: 80%;
+    margin: 0 auto;
+    background-image: url('GRAPHICS/frame.png');
+    background-size: cover;
+    background-position: center;
+    padding: 2vh;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    min-height: 8vh;
+}
+
+/* テーブル本体 */
+.dish-table table {
+    width: 95%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    overflow: hidden;
+    table-layout: fixed;
+    height: 60vh;
+}
+
+/* 表のセル（共通） */
+.dish-table th, .dish-table td {
+    padding: 1vh 0.5vw; /* ← exerciseと同じ余白 */
+    height: 6vh;         /* ← exerciseと同じセル高さ */
+    max-height: 6vh;     /* ← 上限も設定 */
+    font-size: clamp(12px, 1.2vw, 15px); /* ← 少しだけフォントサイズもexercise基準に */
+    line-height: 1.2; /* ← 行間もexerciseに合わせる */
+    word-wrap: break-word;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+/* 各列の幅調整（追加） */
+.dish-table th:nth-child(1),
+.dish-table td:nth-child(1) {
+    width: 10%;
+}
+
+.dish-table th:nth-child(2),
+.dish-table td:nth-child(2) {
+    width: 15%;
+}
+
+.dish-table th:nth-child(3),
+.dish-table td:nth-child(3) {
+    width: 37.5%;
+}
+
+.dish-table th:nth-child(4),
+.dish-table td:nth-child(4) {
+    width: 37.5%;
+}
+
+/* テーブルヘッダー */
+.dish-table th {
+    background-color: #fff3e0;
+    font-weight: bold;
+}
+
+/* テーブルスクロールエリア */
+.table-scroll-wrapper {
+    max-height: 60vh;
+    overflow-y: auto;
+    scrollbar-color: #ffe5b4 #fff3e0;
+    scrollbar-width: thin;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: #ffe5b4;
+    border-radius: 4px;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-track {
+    background-color: #fff3e0;
+}
+
+/* ヘッダー固定 */
+.table-scroll-wrapper th {
+    position: sticky;
+    top: 0;
+    background-color: #fff3e0;
+    z-index: 2;
+}
+
+/* 今日のセル強調 */
+td.today {
+    background-color: #ffcc80;
+    font-weight: bold;
+    border: 2px solid #ff9800;
+    border-radius: 8px;
+    color: #d84315;
+}
+
+/* ▼一番下のバナー＋ボタンエリア */
+.bottom-area {
+    width: 80%;
+    margin: 4vh auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* バナー画像用 */
+.banner-container {
+    display: flex;
+    justify-content: flex-start; /* 左寄せ */
+}
+
+.banner-container .banner-image {
+    max-width: 400px; /* 最大400pxでストップ */
+    width: auto;      /* 自然なサイズ */
+    height: auto;
+}
+
+/* ボタン側 */
+.buttons-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* 右寄せ */
+    gap: 2vw;
+}
+
+.buttons-container button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.buttons-container img {
+    width: 25vw;
+    max-width: 270px;
+    height: auto;
+    transition: transform 0.2s;
+}
+
+.buttons-container img:hover {
+    transform: scale(1.1);
+}
+
+
+
+#weightChart {
+    width: 100% !important;
+    max-width: 100%;
+    height: 60vh;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .dish-table {
+        width: 95%;
+    }
+
+    .category-buttons img {
+        width: 30vw;
+    }
+
+    .bottom-buttons img {
+        width: 35vw;
+    }
+
+    .calendar-title {
+        font-size: clamp(16px, 5vw, 20px);
+    }
+
+    .dish-table th, .dish-table td {
+        padding: 1.5vh;
+        height: 6vh;
+    }
+
+    .table-scroll-wrapper {
+        max-height: 65vh;
+    }
+}

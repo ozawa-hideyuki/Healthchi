@@ -1,0 +1,196 @@
+@charset "UTF-8";
+
+/* CSSリセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 全体の背景と配置 */
+body {
+  background-image: url('GRAPHICS/topbg-2048x1152.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Kosugi Maru', cursive, sans-serif;
+  color: #471906;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.container {
+  text-align: center;
+}
+
+.character {
+	position: absolute;
+	  top: 8%; /* ←5%から8%に。少し下に下げる */
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 550px; /* ←500pxから550pxに拡大 */
+	  max-width: 95%;
+	  height: auto;
+	  z-index: 1000;
+  cursor: pointer;
+}
+
+/* ぴょんぴょんアニメーション */
+@keyframes jump {
+  0%   { transform: translateX(-50%) translateY(0); }
+  30%  { transform: translateX(-50%) translateY(-30px); }
+  50%  { transform: translateX(-50%) translateY(0); }
+  70%  { transform: translateX(-50%) translateY(-15px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+/* ジャンプ中のクラス */
+.jump {
+  animation: jump 0.6s ease;
+}
+
+/* フォームコンテナ */
+.login-container {
+  background-color: #fff;
+  padding: 40px;
+  padding-top: 10px; /* 上方向のスペースを減らす */
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-width: 300px;
+  margin-top: 185px;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 外部のスクロールを防ぐ */
+}
+
+/* エラーメッセージのスペース */
+.message {
+  height: 40px;
+  font-size: 14px;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* フォーム内のスクロール部分 */
+.form-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+  max-height: 300px;
+
+  /* Firefox用のスクロールバー色設定 */
+  scrollbar-color: #ffe5b4 #fff3e0;
+  scrollbar-width: thin;
+}
+
+/* WebKit系ブラウザ用のスクロールバー装飾 */
+.form-scroll-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form-scroll-area::-webkit-scrollbar-thumb {
+  background-color: #ffe5b4;
+  border-radius: 4px;
+}
+
+.form-scroll-area::-webkit-scrollbar-track {
+  background-color: #fff3e0;
+}
+
+
+/* フォーム要素 */
+.form-group {
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #FFE37E;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+input:focus {
+  outline: none;
+  border-color: rgb(247, 174, 94);
+  box-shadow: 0 0 5px rgba(255, 192, 203, 0.5);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(255, 142, 49);
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: rgb(248, 118, 12);
+}
+
+.links {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.links a {
+  color: #ffb6c1;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.links a:hover {
+  color: rgb(248, 118, 12);
+}
+
+/* スクロールバーの装飾 */
+.form-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+.form-scroll-area::-webkit-scrollbar-thumb {
+  background-color: rgba(200, 200, 200, 0.5);
+  border-radius: 10px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .login-container {
+    margin-top: 100px;
+    width: 80%;
+    max-width: 350px;
+    height: 450px; /* モバイル時も高さ固定 */
+  }
+
+  input {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .character {
+    width: 250px;
+  }
+}

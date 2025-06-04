@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+        <Resource
+        name="jdbc/mysql"
+        auth="Container"
+        type="javax.sql.DataSource"
+        factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+        driverClassName="com.mysql.cj.jdbc.Driver"
+        url="jdbc:mysql://192.168.0.159/healthchi"
+        username="student"
+        password="studentpass"
+        />
+</Context>

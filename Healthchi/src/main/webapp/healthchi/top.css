@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+/* CSSリセット */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* 全体の背景と配置 */
+body {
+  background-image: url('GRAPHICS/topbg-2048x1152.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Kosugi Maru', cursive, sans-serif;
+  color: #471906;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative; /* 追加 */
+
+}
+
+/* コンテナのテキストセンタリング */
+.container {
+	text-align: center;
+}
+
+/* ぴょんぴょんアニメーション */
+@keyframes jump {
+  0%   { transform: translateX(-50%) translateY(0); }
+  30%  { transform: translateX(-50%) translateY(-30px); }
+  50%  { transform: translateX(-50%) translateY(0); }
+  70%  { transform: translateX(-50%) translateY(-15px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+/* ジャンプ中のクラス */
+.jump {
+  animation: jump 0.6s ease;
+}
+
+/* キャラクターの配置 */
+.character {
+	position: absolute;
+	  top: 8%; /* ←5%から8%に。少し下に下げる */
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 550px; /* ←500pxから550pxに拡大 */
+	  max-width: 95%;
+	  height: auto;
+	  z-index: 1000;
+	/* 幅を固定しつつ、最小のスペースを確保 */
+	cursor: pointer;
+}
+
+/* ログインフォームコンテナ */
+.login-container {
+	background-color: #fff;
+	padding: 40px;
+	padding-top: 10px;  /* 上方向のスペースを減らす */
+	border-radius: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	min-width: 300px;
+	margin-top: 185px;
+	max-width: 400px;
+	width: 100%;
+}
+
+/* 見出し */
+h2 {
+	margin-bottom: 15px;
+}
+
+/* フォームのスタイル */
+.form-group {
+	margin-bottom: 15px;
+	position: relative;
+	display: inline-block;
+}
+
+
+
+.form-message {
+	display: none;
+	position: absolute;
+	top: -35px;
+	left: 50%;
+		transform: translateX(-50%);
+		background-color: #ffcccc;
+		color: #d8000c;
+		padding: 5px 10px;
+		border-radius: 5px;
+		font-size: 14px;
+		white-space: nowrap;
+}
+
+.form-message::after {
+		content: "";
+		position: absolute;
+		bottom: -10px;
+		left: 50%;
+		transform: translateX(-50%);
+		border-width: 5px;
+		border-style: solid;
+		border-color: #ffcccc transparent transparent transparent;
+}
+
+.input-field:focus + .form-message {
+	display: block;
+}
+
+input {
+	width: 100%;
+	padding: 10px 15px;
+	border: 2px solid #FFE37E;
+	border-radius: 25px;
+	font-size: 16px;
+	box-sizing: border-box;
+}
+
+input::placeholder {
+	color: #ffb6c1;
+}
+
+input:focus {
+	outline: none;
+	border-color: rgb(247, 174, 94);
+	box-shadow: 0 0 5px rgba(255, 192, 203, 0.5);
+}
+
+/* パスワード入力欄とログインボタンの間に余白を追加 */
+.form-group input[type="password"] {
+	margin-bottom: 20px;
+}
+
+/* ボタンスタイル */
+button {
+	width: 100%;
+	padding: 10px;
+	background-color: rgb(255, 142, 49);
+	border: none;
+	border-radius: 25px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+button:hover {
+	background-color: rgb(248, 118, 12);
+}
+
+/* エラーメッセージのスタイル */
+.message {
+	height: 40px;
+	margin: 10px 0;
+	font-size: 14px;
+	color: red;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ボタンラッパー */
+.button-wrapper {
+	margin-top: 10px;
+}
+
+/* 新規登録とパスワードを忘れた方向けリンク */
+.links {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	font-size: 14px;
+}
+
+.links a {
+	color: #ffb6c1;
+	text-decoration: none;
+	font-weight: bold;
+	margin: 0 10px;
+}
+
+.links a:hover {
+	color: rgb(248, 118, 12);
+}
+
+.register-link {
+	margin-right: 5px;
+}
+
+.forgot-password-link {
+	margin-left: 5px;
+}
+
+/* スクロールを隠す */
+html, body {
+	overflow: hidden;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+
+	/* ログインコンテナの幅を調整 */
+	.login-container {
+		margin-top: 100px;
+		padding: 20px;
+		width: 80%;  /* 幅をモバイルに合わせて調整 */
+		max-width: 350px;
+	}
+
+	/* 入力フィールドの幅とパディング */
+	input {
+		padding: 8px 10px;
+		font-size: 14px;
+	}
+
+	/* ボタンの幅とパディング */
+	button {
+		font-size: 14px;
+		padding: 12px;
+	}
+
+
+  /* ロゴのサイズ調整 */
+  .character {
+    width: 250px;  /* モバイルでは少し小さく */
+  }
+
+}

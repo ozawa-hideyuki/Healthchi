@@ -1,0 +1,22 @@
+<%@ page import="bean.User" %>
+<%
+  // テスト用か本番用かを切り替えるフラグ
+  boolean isTestMode = false;
+
+  User user = (User) session.getAttribute("user");
+
+  if (user == null) {
+    if (isTestMode) {
+      // テスト用の仮ログイン処理（本番では削除またはコメントアウト）
+      user = new User();
+      user.setU_ID("test123");
+      user.setU_NAME("テストユーザー");
+      user.setU_RATINGVALUE(5); // ← 必要に応じて進化段階など設定
+      session.setAttribute("user", user);
+    } else {
+      // 本番用：ログインしていなければログインページへリダイレクト
+      response.sendRedirect("top.jsp");
+      return;
+    }
+  }
+%>
